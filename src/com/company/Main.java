@@ -1,13 +1,11 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     static Scanner scanner = new Scanner(System.in);
-    static Map<Integer, String> phonebook = new HashMap<>();
+    static Map<String, String> phoneBook = new HashMap<>();
 
     public static void main(String[] args) {
         int choice = 0;
@@ -15,26 +13,22 @@ public class Main {
         while (choice != 4) {
             printMenu();
             choice = getUserChoice();
-
             if (choice == 1) {
                 displayPhonebook();
-//                else if (choice == 2) {
-////                    addContact();
-//                    else if (choice == 3) {
-////                        deleteContact();
-//                        else if (choice == 4) {
-//                            System.out.println("See you next time. Goodbye!");
-//                        } else {
-//                            System.out.println("Please select a valid option.");
-//                        }
-//                    }
-//                }
+            } else if (choice == 2) {
+                addContact();
+            } else if (choice == 3) {
+                deleteContact();
+            } else if (choice == 4) {
+                System.out.println("See you next time. Goodbye!");
+            } else {
+                System.out.println("Please select a valid option.");
             }
         }
         // write your code here
     }
 
-    public static void printMenu(){
+    public static void printMenu() {
         System.out.println("1) Display Phonebook");
         System.out.println("2) Add New Contact(s)");
         System.out.println("3) Delete Contact(s)");
@@ -42,13 +36,36 @@ public class Main {
         System.out.println("########################################");
     }
 
-    public static int getUserChoice(){
+    public static int getUserChoice() {
         return scanner.nextInt();
     }
 
-    public static void displayPhonebook(){
+    public static void displayPhonebook() {
+        Set<String> phoneNumbers = phoneBook.keySet();
+
+        for (String number : phoneNumbers) {
+            System.out.println("Name: " + phoneBook.get(number) + " Phone number : " + number  );
+        }
 
     }
+
+    public static void addContact() {
+        System.out.print("Enter a phone number");
+        String phoneNumber = scanner.next();
+        System.out.println("Enter a name.");
+        String name = scanner.next();
+        phoneBook.put(phoneNumber, name);
+        System.out.println("New contact " + name + " added!");
+    }
+
+    public static void deleteContact() {
+        System.out.println("Enter phone number to delete.");
+        String phoneNumber = scanner.next();
+        phoneBook.remove(phoneNumber);
+        System.out.println("Contact deleted!");
+    }
+
+
 
 
 }
