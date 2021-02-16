@@ -44,7 +44,7 @@ public class Main {
         Set<String> phoneNumbers = phoneBook.keySet();
 
         for (String number : phoneNumbers) {
-            System.out.println("Name: " + phoneBook.get(number) + " Phone number : " + number  );
+            System.out.println("Name: " + phoneBook.get(number) + " Phone number: " + number);
         }
 
     }
@@ -61,11 +61,12 @@ public class Main {
     public static void deleteContact() {
         System.out.println("Enter phone number to delete.");
         String phoneNumber = scanner.next();
-        phoneBook.remove(phoneNumber);
-        System.out.println("Contact deleted!");
+        if (phoneBook.remove(phoneNumber) == null) {
+            System.out.println("No contact with that number");
+        } else {
+            System.out.println("Removed " + phoneBook.remove(phoneNumber));
+        }
+
     }
-
-
-
 
 }
